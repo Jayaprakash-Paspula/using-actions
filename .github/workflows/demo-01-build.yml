@@ -2,6 +2,7 @@ name: build demo
 on:
   push
 jobs:
+<<<<<<< HEAD
   build:
     runs-on: ubuntu-latest
     steps:
@@ -18,3 +19,10 @@ jobs:
         with:
           name: demo-01-build
           path: target/*.jar
+=======
+    build:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Build with Gradle
+          run: echo "Hello world"
+>>>>>>> db85c7e90d3111648d82002f1b7fa23da9619fcb
