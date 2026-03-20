@@ -1,4 +1,4 @@
-Name: build demo
+name: build demo
 on:
   push:
     branches: [ main ]
