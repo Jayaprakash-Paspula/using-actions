@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./react-app
 
     steps:
 
@@ -21,4 +24,5 @@ jobs:
         node-version: '20.x'
     - name: Install dependencies
       run: npm install
-      working-directory: react-app
+    - name: run unit tests
+      run: npm run test
