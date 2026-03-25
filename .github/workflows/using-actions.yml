@@ -21,3 +21,4 @@ jobs:
         node-version: '24'
     - name: Install dependencies
       run: npm install 
+      working-directory: 04-using-actions/react-app
