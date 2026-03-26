@@ -1,0 +1,22 @@
+name: filters activity
+
+on:
+    pull_request:
+      types: [opened, synchronize]
+      branches: [ main ]
+
+jobs:
+  filters:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Run a one-line script
+      run: echo "This is a one-line script"
+
+    - name: Run a multi-line script
+      run: |
+        echo "This is a multi-line script"
+        echo "It can run multiple commands"        
