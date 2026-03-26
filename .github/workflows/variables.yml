@@ -1,0 +1,34 @@
+name: variables
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+        debug:
+          type: boolean
+          default: false
+env:
+  MY_WORKFLOW: "This is a workflow variable from env"
+  overwritten_var: "This is a workflow variable that will be overwritten by job variable from env"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      MY_JOB: "This is a job variable from env"
+
+    steps:
+
+    - name: Print variable
+      env:
+        MY_VAR: "This is a variable from env"
+        MY_VAR2: "This is another variable from env"
+      run: |
+        echo "my variable: ${{ env.MY_VAR }}"
+        echo "my variable2: ${{ env.MY_VAR2 }}"
+        echo "my workflow variable: ${{ env.MY_WORKFLOW }}"
+        echo "my job variable: ${{ env.MY_JOB }}"
+        echo "overwritten variable: ${{ env.overwritten_var }}"
+    -name: overwrite variable
+      env:
+        overwritten_var: "This variable is overwritten by step variable from env"
+      run: echo "overwritten variable: ${{ env.overwritten_var }}"
