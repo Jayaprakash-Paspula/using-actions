@@ -22,7 +22,5 @@ jobs:
         echo "GITHUB_JOB: ${{ github.job }}"
     
     - name: retrieve variable from env
-      run: echo "The value of MY_VARIABLE is: $MY_VARIABLE"
-      env:
-        MY_VARIABLE: Hello, World!
-    
+      run: |
+        echo "variable from env: ${{ vars.MY_VAR }}"
