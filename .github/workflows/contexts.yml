@@ -1,7 +1,8 @@
 name: contexts
 
-on: push    
-
+on: 
+  push:
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,7 +19,4 @@ jobs:
         echo "GITHUB_WORKFLOW: ${{ github.workflow }}"
         echo "GITHUB_RUN_ID: ${{ github.run_id }}"
         echo "GITHUB_RUN_NUMBER: ${{ github.run_number }}"
-    - name: retrieve variable from env
-      run: echo "MY_VARIABLE: $MY_VARIABLE"
-      env:
-        MY_VARIABLE: "This is a custom environment variable"
+        echo "GITHUB_JOB: ${{ github.job }}"
