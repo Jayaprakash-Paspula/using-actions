@@ -1,0 +1,30 @@
+name: expressions
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+        debug:
+          type: boolean
+          default: false
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Print debug information
+      if: ${{ github.event.inputs.debug }}
+      run: |
+        echo "Debug mode is enabled"
+        echo "GITHUB_REPOSITORY: ${{ github.repository }}"
+        echo "event name: ${{ github.event_name }}"
+        echo "commit sha: ${{ github.sha }}"
+        echo "runner os: ${{ runner.os }}"
+    - name: Print non-debug information
+      if: ${{ !github.event.inputs.debug && github.ref == 'refs/heads/main' }}
+      run: echo "Debug mode is disabled from main"
+    - name: greeting
+      run: echo "Hello, ${{ github.actor }}!"    
+  
