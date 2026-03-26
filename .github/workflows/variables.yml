@@ -29,6 +29,6 @@ jobs:
         echo "my job variable: ${{ env.MY_JOB }}"
         echo "overwritten variable: ${{ env.overwritten_var }}"
     -name: overwrite variable
-      env:
-        overwritten_var: "This variable is overwritten by step variable from env"
-      run: echo "overwritten variable: ${{ env.overwritten_var }}"
+     env:
+       overwritten_var: "This variable is overwritten by step variable from env"
+     run: echo "overwritten variable: ${{ env.overwritten_var }}"
