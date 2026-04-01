@@ -28,4 +28,15 @@ jobs:
         echo "my workflow variable: ${{ env.MY_WORKFLOW }}"
         echo "my job variable: ${{ env.MY_JOB }}"
         echo "overwritten variable: ${{ env.overwritten_var }}"
+        echo "overwritten variable from job: ${{ env.overwritten_var }}"
+  echo:
+    runs-on: ubuntu-latest
+    env:
+      overwritten_var: "This is a variable from env that overwrites the workflow variable"
+
+    steps:
+    - name: Print overwritten variable
+      run: |
+        echo "overwritten variable from job: ${{ env.overwritten_var }}"
+        echo "overwritten variable from workflow: ${{ env.MY_WORKFLOW }}"
     
