@@ -2,7 +2,6 @@ name: contexts
 run-name: run on the debug ${{ github.debug }}
 
 on: 
-  push:
   workflow_dispatch:
     inputs:
         debug:
