@@ -1,0 +1,21 @@
+name: 01-conditions
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Print message if condition is true
+      if: ${{ true }}
+      run: echo "This message will be printed because the condition is true"
+
+    - name: Print message if condition is false
+      if: ${{ false }}
+      run: echo "This message will not be printed because the condition is false"
