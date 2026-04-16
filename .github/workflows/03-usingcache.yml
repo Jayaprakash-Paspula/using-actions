@@ -1,0 +1,32 @@
+name : 03-usingcache
+
+on:
+  workflow_dispatch:
+    inputs:
+      use-cache:
+        description: 'Use cache for build'
+        type: boolean
+        default: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: checkout code
+        uses: actions/checkout@v3
+      
+      - name: setup cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+      - name: install dependencies
+        run: npm install
+      - name: build the application
+        run: npm run build
+      - name: test the application
+        run: npm run test
+      - name: deploy the application to prod
+        run: npm run deploy
