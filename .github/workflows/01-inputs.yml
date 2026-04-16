@@ -6,17 +6,18 @@ on:
       dry-build:
         description: 'Perform a dry run of the build process'
         type: boolean
-        required: false
         default: false
       target:
         description: 'Deployment target'
         type: choice
-        required: false
-        default: v1
+        default: v3
+        options:
+          - v1
+          - v2
+          - v3
       choice:
         description: 'Choose an option'
         type: choice
-        required: false
         options:
           - v1
           - v2
