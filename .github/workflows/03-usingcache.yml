@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    work-directory: ./react-app
 
     steps:
 
@@ -22,10 +23,11 @@ jobs:
           node-version: '20.x'
         
       - name: setup cache
+        id: cache
         uses: actions/cache@v3
         with:
           path: react-app/node_modules
-          key: node-modules-build-${{ hashFiles('react-app/package-lock.json') }}
+          key: ${{ runner.os }}-build-${{ hashFiles('react-app/package-lock.json') }}
       - name: install dependencies
         run: npm install
       - name: build the application
@@ -35,4 +37,5 @@ jobs:
       - name: deploy the application to prod
         run: npm run deploy
       - name: print cache usage
-        run: echo "Cache was used: ${{ steps.cache.outputs.cache-hit }}"
+        run: |
+          echo "Cache was used: ${{ steps.cache.outputs.cache-hit }}"
