@@ -1,0 +1,51 @@
+name: 02-demo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build the application
+        run: echo "Building the application..."
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run tests
+        run: echo "Running tests..."
+
+  pre-prod:
+    runs-on: ubuntu-latest
+    needs: 
+      - build
+      - test
+    steps:
+      - name: deploy to pre-prod
+        run: echo "Deploying to pre-production environment..."
+
+  ui-test:
+    runs-on: ubuntu-latest
+    needs: 
+      - pre-prod
+    steps:
+      - name: run UI tests
+        run: echo "Running UI tests..."
+
+  end-to-end:
+    runs-on: ubuntu-latest
+    needs: 
+      - pre-prod
+    steps:
+      - name: run end-to-end tests
+        run: echo "Running end-to-end tests..."
+  
+  prod-deploy: 
+    runs-on: ubuntu-latest
+    needs: 
+      - ui-test
+      - end-to-end
+    steps:
+      - name: deploy to production
+        run: echo "Deploying to production environment..."
