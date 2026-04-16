@@ -10,7 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    work-directory: ./react-app
+    defaults:
+      run:
+        working-directory: ./react-app
 
     steps:
 
