@@ -19,23 +19,18 @@ jobs:
       - name: setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '20.x'
         
       - name: setup cache
         uses: actions/cache@v3
         with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
-        
+          path: react-app/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('react-app/package-lock.json') }}
       - name: install dependencies
         run: npm install
-        
       - name: build the application
         run: npm run build
-        
       - name: test the application
         run: npm run test
-        
       - name: deploy the application to prod
         run: npm run deploy
