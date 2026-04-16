@@ -37,7 +37,7 @@ jobs:
       - name: test the application
         run: npm run test
       - name: deploy the application to prod
-        run: npm run deploy
+        run: echo "Deploying the application to production environment..."
       - name: print cache usage
         run: |
           echo "Cache was used: ${{ steps.cache.outputs.cache-hit }}"
