@@ -25,7 +25,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: react-app/node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('react-app/package-lock.json') }}
+          key: node-modules-build-${{ hashFiles('react-app/package-lock.json') }}
       - name: install dependencies
         run: npm install
       - name: build the application
@@ -34,3 +34,5 @@ jobs:
         run: npm run test
       - name: deploy the application to prod
         run: npm run deploy
+      - name: print cache usage
+        run: echo "Cache was used: ${{ steps.cache.outputs.cache-hit }}"
