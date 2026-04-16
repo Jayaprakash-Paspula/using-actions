@@ -27,11 +27,15 @@ jobs:
           path: |
             **/node_modules
           key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json') }}
+        
       - name: install dependencies
         run: npm install
+        
       - name: build the application
         run: npm run build
+        
       - name: test the application
         run: npm run test
+        
       - name: deploy the application to prod
         run: npm run deploy
