@@ -2,7 +2,11 @@ name: 02-demo
 
 on:
   workflow_dispatch:
-
+    inputs:
+      test:
+        description: 'Test value'
+        type: boolean
+        required: false
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: run tests
-        run: echo "Running tests..."
+        run: ${{ !github.event.inputs.test || 'echo Running tests...' }} && exit 1
 
   pre-prod:
     runs-on: ubuntu-latest
