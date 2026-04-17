@@ -29,8 +29,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: react-app/node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('react-app/package-lock.json') }}
+          key: idnjs-build-${{ hashFiles('react-app/package-lock.json') }}
       - name: install dependencies
+        if: ${{ !steps.cache.outputs.cache-hit == 'true' }}
         run: npm install
       - name: build the application
         run: npm run build
