@@ -1,0 +1,29 @@
+name: environments
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select the environment to deploy'
+        type: choice
+        options:
+          - development
+          - production
+        default: development
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    env:
+      MY_PROD_VAR: ${{ vars.MY_PROD_VAR || 'default_value' }}
+
+    steps:
+
+    - name: Deploy to development environment
+      run: |
+        echo "env: ${{ env.MY_PROD_VAR }}"
+        
+      
+
+    
